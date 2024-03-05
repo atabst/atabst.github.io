@@ -1,0 +1,41 @@
+---
+title: "Logan Hartstein" 
+about:
+  template: trestles  # jolla  trestles  solana  marquee  broadside
+  image: img/IMG_4810.png
+  image-width: 16em
+  image-shape: rounded # rectangle  round  rounded
+  
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/logan-hartstein-18366a291/
+    - icon: instagram
+      text: Instagram
+      href: https://instagram.com/loganhartstein
+    - icon: github
+      text: GitHub
+      href: https://github.com/atabst
+    - icon: file-earmark-pdf
+      text: Resumé
+      href: https://atabst.github.io/resume.pdf
+    - icon: mailbox
+      text: Email
+      href: mailto:lmh28@geneseo.edu
+
+---
+ 
+
+Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+
+## Education
+
+State University of New York at Geneseo | Geneseo, NY <br>
+B.S. in Data Analytics | Aug 2022 - May 2026 <br>
+Minor in Business Administration 
+
+## Experience
+
+Starbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024
+
+

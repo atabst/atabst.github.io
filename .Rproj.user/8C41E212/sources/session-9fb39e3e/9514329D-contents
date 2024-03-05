@@ -1,0 +1,38 @@
+Users/Logan732/Downloads/nbc_show.csv
+
+
+pathname <- "PATHNAME_OF_nbc_show.csv"
+
+
+
+
+install.packages("tidyverse")
+library(tidyverse)
+df_mpg <- mpg
+pathname <- "PATHNAME_OF_nbc_show.csv"
+library(tidyverse)
+library(ggplot2)
+df_mpg <- mpg
+update.packages(ask = FALSE, checkBuilt = TRUE)
+install.packages( "tidyverse", 
+                  dependencies = c("Depends", "Imports", "LinkingTo") )
+
+
+
+git config --global user.email "lmh28@geneseo.edu"
+
+git config --global user.name "atabst"
+
+
+install.packages("usethis")
+
+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
+
+install.packages("gitcreds")
+
+gitcreds::gitcreds_set()
+# comment
+# Auto-completion
+library(tidyverse)
+https://github.com/atabst/atabst.github.io.git
+

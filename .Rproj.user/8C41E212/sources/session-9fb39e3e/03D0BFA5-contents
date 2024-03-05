@@ -1,0 +1,31 @@
+project: 
+  type: website
+  output-dir: "." 
+
+website:
+  title: "Logan Hartstein"
+  navbar:
+    # background: "#1c4982"
+    pinned: true
+    left:
+      - text: Project
+        href: project.qmd
+      - text: R Basics
+        href: danl-200-quarto.qmd
+      - text: Blog
+        href: blog-listing.qmd
+            
+  page-footer: 
+    center: "Powered with GitHub and Quarto<br>© Logan Hartstein, 2024"
+
+format:
+  html:
+    theme: 
+      light: flatly # flatly sandstone yeti united litera journal
+      dark: darkly #  darkly cyborg slate solra superhero
+    mainfont: system-ui; 
+    highlight-style: atom-one  # atom-one espresso
+    css: styles.css
+    toc: false
+    include-after-body: target_blank.html
+
