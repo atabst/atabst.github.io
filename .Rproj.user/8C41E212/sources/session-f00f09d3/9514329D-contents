@@ -1,3 +1,12 @@
+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
+
+gitcreds::gitcreds_set()
+
+
+
+
+
+
 Users/Logan732/Downloads/nbc_show.csv
 
 
@@ -26,11 +35,10 @@ git config --global user.name "atabst"
 
 install.packages("usethis")
 
-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
+
 
 install.packages("gitcreds")
 
-gitcreds::gitcreds_set()
 # comment
 # Auto-completion
 library(tidyverse)
