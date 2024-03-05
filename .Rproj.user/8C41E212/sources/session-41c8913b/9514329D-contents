@@ -1,5 +1,7 @@
 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
+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
 
+usethis::create_github_token()
 gitcreds::gitcreds_set()
 
 
