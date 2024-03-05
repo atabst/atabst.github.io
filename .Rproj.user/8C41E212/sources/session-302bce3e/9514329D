@@ -3,7 +3,7 @@
     "path": "~/Downloads/DANL 200/Danl-200-cwk-1.R",
     "project_path": null,
     "type": "r_source",
-    "hash": "3898616202",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1709656839406.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "11,0",
-        "scrollLine": "1"
+        "cursorPosition": "4,24",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1709658762,
+    "lastKnownWriteTime": 1709658805,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1709658762322,
+    "last_content_update": 1709658805532,
     "read_only": false,
     "read_only_alternatives": []
 }
