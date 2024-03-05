@@ -1,3 +1,9 @@
+git config --global --unset credential.helper
+git credential-osxkeychain erase
+host=github.com
+protocol=https
+
+
 
 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
 
