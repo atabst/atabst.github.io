@@ -1,5 +1,5 @@
 ---
-title: "Logan Hartstein"
+title: "Logan Hartstein" 
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
   image: img/IMG_4810.png
