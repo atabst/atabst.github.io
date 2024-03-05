@@ -5,7 +5,8 @@ protocol=https
 
 
 
-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
+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
+
 
 usethis::create_github_token()
 gitcreds::gitcreds_set()
