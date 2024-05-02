@@ -1,0 +1,5 @@
+"0","ggplot(data = mpg) + 
+  geom_histogram(mapping = 
+                aes(x = displ, binwidth = 3))
+"
+"2","Warning: [38;5;232mIgnoring unknown aesthetics: [32mbinwidth[38;5;232m[39m"

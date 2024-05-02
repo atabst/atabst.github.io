@@ -1,0 +1,163 @@
+---
+title: Lecture 11 - Note    # e.g., Lecture 10 - Note
+subtitle: SOME TOPICS  # e.g., Aesthetic Mappings; Facets; Geometric Objects 
+author: 
+  - name: Logan   # e.g., Byeong-Hak Choe
+date: last-modified   # e.g., 2024-02-29
+
+execute: 
+  echo: true        # true false
+  eval: true        # true false
+  warning: false    # true false
+  message: false    # true false
+  fig-width: 9
+  # fig-height: 5
+  
+format: 
+  html:
+    toc: true                # true false
+    number-sections: true    # true false
+    code-fold: false         # true false show   # https://quarto.org/docs/output-formats/html-code.html
+    code-tools: true         # true false
+    highlight-style: a11y          # a11y arrow ayu atom-one breeze github gruvbox tango espresso
+                                   # pygments tango espresso espresso zenburn kate nord
+                                   # https://quarto.org/docs/output-formats/html-code.html#highlighting
+---
+
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(skimr)
+library(hrbrthemes)
+library(DT)
+library(rmarkdown)
+
+```
+
+
+Below is r code to create plot
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = 
+               aes(x = displ, 
+                   y = hwy), 
+             alpha = .5) + 
+  facet_wrap( class ~ .)
+```
+
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = 
+               aes(x = displ, 
+                   y = hwy), 
+             alpha = .5) + 
+  facet_wrap( class ~ . , ncol = 2)
+
+```
+~ is used for =
+## Overplotting Issues
+drv shows which type of driving it is and cyl is the cylinders
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = 
+               aes(x = displ, 
+                   y = hwy),
+             alpha = .5) + 
+  facet_grid(drv ~ cyl)
+```
+
+
+## Section 2
+classwork 6 question 3
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy),
+             alpha = .5) +
+  facet_grid(drv ~ .)
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy),
+             alpha = .5) +
+  facet_grid(. ~ cyl)
+```
+
+
+q3b
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = drv, y = cyl))
+```
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = drv, y = cyl))
+
+
+```
+
+
+No column split if . is used
+facet_grid(Row wise split~ column wise split)
+makes facet ignore corresponding split
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy),
+             alpha = .5) +
+  facet_grid(drv ~ .)
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy),
+             alpha = .5) +
+  facet_grid(. ~ drv)
+
+```
+ggplot divides scatter plot using other variables
+disadvantage of facet is that it takes more effort to see each subplot
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy),
+             alpha = .5) + 
+  facet_wrap(~ class, nrow = 2)
+
+```
+
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color=class),
+             alpha = .5  ) +
+  facet_wrap(~ class, nrow = 2)
+
+```
+Whenever a variable has a decimal point it is fair to assume that its continuous
+
+```{r}
+ggplot( data=tvshows) +
+  geom_point(mapping = aes(x=GRP, y=PE),alpha=.5) +
+  facet_wrap( Genre ~ .) +
+  geom_smooth(mapping = aes(x=GRP, y=PE))
+
+
+```
+use geom point and geom smooth together
+
+```{r}
+ggplot(data = mpg) + 
+  geom_histogram(mapping = 
+                aes(x = displ, binwidth = 3))
+
+```
+
+
+
+
+
+
+
+
+
+
+
