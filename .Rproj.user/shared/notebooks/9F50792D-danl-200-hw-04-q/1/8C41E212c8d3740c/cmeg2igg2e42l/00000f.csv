@@ -1,0 +1,5 @@
+"0","q1a <- restaurant |> "
+"0","  group_by(GRADE) |> "
+"0","  skim()"
+"0",""
+"0",""

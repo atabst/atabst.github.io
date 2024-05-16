@@ -1,0 +1,104 @@
+---
+title: Project
+subtitle: beer market
+date: last-modified
+from: markdown+emoji
+
+execute: 
+  warning: false
+  message: false
+  fig-width: 9
+  fig-height: 7
+---
+
+```{r}
+beer_markets <- read.csv("https://bcdanl.github.io/data/beer_markets_all.csv")
+```
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(skimr)
+```
+
+
+
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+
+url <- "https://bcdanl.github.io/data/beer_markets_all.csv"
+beer_markets <- read.csv(url)
+
+
+beer_markets2 <- beer_markets |>
+  group_by(state, brand) |>
+  summarise(n = n()) |>
+  slice_max(n, n=10)
+
+
+
+
+
+
+
+
+  
+  
+```
+
+
+```{r}
+
+beer_markets2 <- beer_markets |>
+  group_by(income, dollar_spent) |>
+  summarise(n = n()) 
+
+```
+
+```{r}
+
+average_spent_by_income <- beer_markets %>%
+  group_by(income) %>%
+  summarize(average_dollar_spent = mean(dollar_spent, na.rm = TRUE)) |> 
+  mutate(income = factor(income,
+                         levels = c("under20k", 
+                                    "20-60k",
+                                    "60-100k",
+                                    "100-200k",
+                                    "200k+")))
+
+
+
+ggplot(average_spent_by_income, aes(x = income, y = average_dollar_spent ))+
+  geom_point()
+
+
+
+
+
+```
+
+
+
+
+
+```{r}
+#| fig-height: 10
+beer_markets2 <- beer_markets |> 
+  count(state, income) |> 
+  group_by(state) |> 
+  mutate(total = sum(n)) |> 
+  ungroup() |> 
+  filter(dense_rank(-total)<=10) |> 
+  mutate(state = fct_reorder(state, total))
+
+ggplot(beer_markets2)+
+  geom_bar(aes(y = state, fill = income, x = n),
+           stat = "identity", position = "fill")
+```
+
+
+

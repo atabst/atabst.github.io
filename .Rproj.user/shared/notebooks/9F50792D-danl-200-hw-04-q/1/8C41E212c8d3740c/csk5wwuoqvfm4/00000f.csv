@@ -1,0 +1,5 @@
+"0","q1b <- restaurant |> "
+"0","  filter(GRADE == 'A') |> "
+"0","  count(BORO)"
+"0",""
+"0",""

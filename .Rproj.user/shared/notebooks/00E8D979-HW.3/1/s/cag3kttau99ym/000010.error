@@ -1,0 +1,1 @@
+{"frames":[{"func":"ggplot(health_cust2, aes(x = log10(income)))","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0}],"message":"Error: object 'health_cust2' not found\n"}

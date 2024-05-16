@@ -1,0 +1,245 @@
+---
+title: Homework 4
+subtitle: Data Visualization and Data Transformation
+date: last-modified
+from: markdown+emoji
+comments: false
+code-fold: false
+
+execute: 
+  warning: false
+  message: false
+  fig-width: 9
+  fig-height: 7
+  fig-align: center
+---
+```{r}
+#| eval: true
+#| include: false
+
+library(tidyverse)
+library(skimr)
+```
+
+# Direction
+
+- Download the Homework 4 Quarto document, `danl-200-hw-04-q.qmd`, by clicking [this link](https://drive.google.com/file/d/1NT5nKWEjwi536RYxIkoZrdUVfDzllA54/view?usp=share_link).
+
+- Provide both your answer to each sub question in **Question 1 of Homework 4** in the `danl-200-hw-04-q.qmd`.
+
+- Please submit your **Quarto document for Question 1 of Homework 4** to the Brightspace with the name below:
+
+  - `danl-200-hw4-LASTNAME-FIRSTNAME.qmd`\
+  ( e.g., `danl-200-hw4-choe-byeonghak.qmd` )
+
+- The due is April 30, 2024, 11:59 P.M.
+
+- Please send an email to Byeong-Hak (`bchoe@geneseo.edu`) if you have any questions or clarifications.
+
+<br><br><br>
+
+## Question 1
+
+Load the data.frame for Question 1.
+
+```{r}
+#| echo: true
+#| eval: true
+restaurant <- read_csv('https://bcdanl.github.io/data/DOHMH_NYC_Restaurant_Inspection.csv')
+```
+
+```{r}
+#| results: asis
+#| echo: false
+rmarkdown::paged_table(restaurant)
+```
+
+### Variable Description
+
+-   `CAMIS`:
+    -   This is an unique identifier for the entity (restaurant);
+    -   10-digit integer
+-   `DBA`:
+    -   This field represents the name (doing business as) of the entity (restaurant);
+    -   Public business name, may change at discretion of restaurant owner
+-   `BORO`:
+    -   Borough in which the entity (restaurant) is located.;
+    -   • `1` = MANHATTAN
+    -   • `2` = BRONX
+    -   • `3` = BROOKLYN
+    -   • `4` = QUEENS
+    -   • `5` = STATEN ISLAND
+    -   • `0` = Missing;
+-   `CUISINE DESCRIPTION`:
+    -   This field describes the entity (restaurant) cuisine.
+-   `ACTION`:
+    -   This field represents the actions that is associated with each restaurant inspection. ;
+    -   • Violations were cited in the following area(s).
+    -   • No violations were recorded at the time of this inspection.
+    -   • Establishment re-opened by DOHMH
+    -   • Establishment re-closed by DOHMH
+    -   • Establishment Closed by DOHMH.
+    -   • Violations were cited in the following area(s) and those requiring immediate action were addressed.
+-   `VIOLATION CODE`:
+    -   Violation code associated with an establishment (restaurant) inspection
+-   `VIOLATION DESCRIPTION`:
+    -   Violation description associated with an establishment (restaurant) inspection
+-   `CRITICAL FLAG`:
+    -   Indicator of critical violation;
+    -   • `Critical`
+    -   • `Not Critical`
+    -   • `Not Applicable`;
+    -   Critical violations are those most likely to contribute to food-borne illness
+-   `SCORE`:
+    -   Total score for a particular inspection;
+-   `GRADE`:
+    -   Grade associated with the inspection;
+    -   • `N` = Not Yet Graded
+    -   • `A` = Grade A
+    -   • `B` = Grade B
+    -   • `C` = Grade C
+    -   • `Z` = Grade Pending
+    -   • `P` = Grade Pending issued on re-opening following an initial inspection that resulted in a closure
+
+<br><br>
+
+### Q1a.
+
+What are the mean, standard deviation, first quartile, median, third quartile, and maximum of `SCORE` for each `GRADE` of restaurants?
+
+*Answer*:
+```{r}
+q1a <- restaurant |> 
+  group_by(GRADE) |> 
+  skim()
+
+
+```
+
+<br><br>
+
+### Q1b.
+
+- How many restaurants with a `GRADE` of `A` are there in each `BORO` in NYC?
+
+*Answer*:
+```{r}
+q1b <- restaurant |> 
+  filter(GRADE == 'A') |> 
+  count(BORO)
+
+
+```
+
+<br>
+
+### Q1c.
+
+- Provide both (1) ggplot code and (2) a simple comment to describe how the distribution of `SCORE` varies by `GRADE` and `CRITICAL FLAG`.
+
+
+
+*Answer*:
+```{r}
+# Boxplot
+ggplot(restaurant) +
+  geom_boxplot(aes(x = SCORE, y = GRADE, fill = GRADE),
+               show.legend = F) +
+  facet_grid( `CRITICAL FLAG` ~ . )
+
+#Surprisingly, critical restaurants have a higher average score
+```
+
+<br><br>
+
+### Q1d.
+
+Provide both (1) ggplot code and (2) a simple comment to describe how the proportion of `CRITICAL FLAG` varies by `GRADE` and `BORO`.
+
+
+*Answer*:
+```{r}
+ggplot(restaurant) +
+  geom_bar(aes(y = `CRITICAL FLAG`,
+               x = after_stat(prop), group = 1)) +
+  facet_grid( GRADE ~ BORO )
+#Distribution across grade a is very similar. for grade b staten island is the most critical. for grade c bronx is most critical
+```
+
+<br><br>
+
+### Q1e.
+- Calculate the proportion of restaurants that had violation related to `contamination` or `mice` in each `BORO`.
+
+*Answer*:
+```{r}
+q1e <- restaurant |> 
+  mutate(`VIOLATION DESCRIPTION` = str_to_lower(`VIOLATION DESCRIPTION`),
+         contamination_mice = ifelse(str_detect(`VIOLATION DESCRIPTION`, 'contamination') | 
+                                       str_detect(`VIOLATION DESCRIPTION`, 'mice'), 
+                                     T, F) ) |> 
+  group_by(BORO) |> 
+  summarise(n = n(),
+            n_contamination_mice = sum(contamination_mice),
+            prop = 100 * n_contamination_mice / n)
+
+#Manhattan had the highest mouse contamination by far while staten island had the least.
+```
+
+<br><br>
+
+
+### Q1f.
+
+-   Find the 3 most common names of restaurants (`DBA`) in each `BORO`.
+-   Overall, which `DBA` value is most common in NYC?
+
+
+*Answer*:
+```{r}
+q1f <- restaurant %>% 
+  select(DBA, BORO) %>% 
+  group_by(BORO, DBA) %>% 
+  mutate(ranking = dense_rank(-n)) %>% 
+  arrange(BORO, ranking)
+#Very confused on this one
+```
+
+<br><br>
+
+
+### Q1g.
+
+- Construct a bar chart to display the top 10 names of restaurants (`DBA`) sortetd by the frequency of each name within their respective borough (`BORO`).
+
+
+*Answer*:
+```{r}
+top10 <- q1f_ |> 
+  ungroup() |> 
+  slice_max(n, n = 10)
+
+q1g <- restaurant |> 
+  filter(DBA %in% top10$DBA)
+
+ggplot(q1g, aes(y = DBA, fill = DBA)) +
+  geom_bar(show.legend = F) +
+  facet_wrap(BORO ~ .)
+```
+
+<br><br>
+
+
+### Q1h
+What is your GitHub username?
+
+
+*Answer*:
+```{r}
+atabst
+```
+
+
+<br><br><br>
+
+

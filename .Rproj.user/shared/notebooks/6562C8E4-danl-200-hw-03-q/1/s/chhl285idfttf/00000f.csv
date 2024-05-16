@@ -1,0 +1,5 @@
+"0","ggplot(health_cust, aes(x = log10(income) ) ) +
+  geom_histogram()
+"
+"2","Error: object 'health_cust' not found
+"
