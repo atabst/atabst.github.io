@@ -1,0 +1,1 @@
+{"frames":[],"message":"Error in mutate(beer_markets %>% group_by(income) %>% summarize(average_dollar_spent = mean(dollar_spent,  : \n  could not find function \"mutate\"\n"}

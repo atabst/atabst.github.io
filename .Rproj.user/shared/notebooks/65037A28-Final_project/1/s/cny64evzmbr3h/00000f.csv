@@ -1,0 +1,13 @@
+"0",""
+"0","average_spent_by_income <- beer_markets %>%"
+"0","  group_by(income) %>%"
+"0","  summarize(average_dollar_spent = mean(dollar_spent, na.rm = TRUE)) |> "
+"0","  mutate(income = factor(income,"
+"0","                         levels = c(""under20k"", "
+"0","                                    ""20-60k"","
+"0","                                    ""60-100k"","
+"0","                                    ""100-200k"","
+"0","                                    ""200k+"")))"
+"2","Error in mutate(beer_markets %>% group_by(income) %>% summarize(average_dollar_spent = mean(dollar_spent,  : 
+  could not find function ""mutate""
+"

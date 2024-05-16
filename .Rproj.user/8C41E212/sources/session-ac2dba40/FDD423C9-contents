@@ -11,17 +11,13 @@ execute:
   fig-height: 7
 ---
 
-```{r}
-beer_markets <- read.csv("https://bcdanl.github.io/data/beer_markets_all.csv")
-```
+
 
 ```{r}
 library(tidyverse)
 library(dplyr)
 library(skimr)
 ```
-
-
 
 
 ```{r}
@@ -49,6 +45,10 @@ beer_markets2 <- beer_markets |>
   
 ```
 
+
+```{r}
+skim(beer_markets)
+```
 
 ```{r}
 
@@ -81,8 +81,7 @@ ggplot(average_spent_by_income, aes(x = income, y = average_dollar_spent ))+
 
 ```
 
-
-
+This graph is very interesting. It shows us how much each income bracket spends on average when purchasing beer. Unsurprisingly, the wealthier groups tend to spend more on average. What did surprise me though, is the fact that the lower income groups only spend around $2 less per purchase. It goes to show the difference in priorities between wealthy and poor people. Furthermore, this graph shows that alcohol consumption is something all income levels find important considering that they each spend similar amounts of money when buying alcohol.
 
 
 ```{r}
@@ -100,5 +99,5 @@ ggplot(beer_markets2)+
            stat = "identity", position = "fill")
 ```
 
-
+This graph shows the proportion of alcohol bought by each income group by state. In almost every state, the 20-60k group is spending the most on beer while the 200k+ group buys the least in every state observed. This is surprising because most people would expect that the group with the most money would buy the most beer. I think the reason for this is because people who are addicted to alcohol tend to have less money. The people who can control their usage are much more responsible with not only their drinking, but also their finances.
 
